@@ -118,7 +118,7 @@
   </head>
 
   <body>
-    <h1>Generator Pesan Undangan (HTML + JS)</h1>
+    <h1>Generator Pesan Undangan</h1>
 
     <div class="two">
       <div class="card">
@@ -168,18 +168,6 @@
             </div>
             <input id="waktu" type="time" disabled value="08:00" />
             <div class="hint">Akan tampil sebagai: <span class="mono">19.00 WIB s/d selesai</span></div>
-          </div>
-
-          <!-- Tempat -->
-          <div class="row">
-            <div class="labelRow">
-              <label for="tempat">Tempat (bisa online/lokasi)</label>
-              <label class="toggle">
-                <input type="checkbox" id="en_tempat" />
-                Enable edit
-              </label>
-            </div>
-            <input id="tempat" type="text" value="https://maps.app.goo.gl/788wPUr9TZ2vHNtt9" disabled />
           </div>
 
           <!-- Domain -->
@@ -273,7 +261,6 @@
         const namaAcara = (el("namaAcara").value || "[Nama Acara]").trim();
         const hariTanggal = formatTanggalLongID(el("hariTanggal").value);
         const waktu = formatWaktu(el("waktu").value);
-        const tempat = (el("tempat").value || "[isi / online / lokasi]").trim();
         const penutup = (el("penutup").value || "[Nama Pengundang / Keluarga / Panitia]").trim();
 
         const url = buildInviteUrl();
@@ -288,7 +275,6 @@ Dengan segala kerendahan hati, kami mengundang ${namaTamu} untuk menghadiri acar
 
 📅 Hari/Tanggal : ${hariTanggal}
 ⏰ Waktu : ${waktu}
-📍 Tempat : ${tempat}
 
 Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila ${namaTamu} berkenan hadir dan memberikan doa restu.
 
@@ -344,7 +330,6 @@ ${penutup}`;
       bindToggle("en_namaAcara", "namaAcara");
       bindToggle("en_hariTanggal", "hariTanggal");
       bindToggle("en_waktu", "waktu");
-      bindToggle("en_tempat", "tempat");
       bindToggle("en_domain", "domain");
       bindToggle("en_penutup", "penutup");
 
@@ -354,7 +339,7 @@ ${penutup}`;
       el("btnWhatsApp").addEventListener("click", shareWhatsApp);
 
       // Auto update on input changes
-      ["namaTamu", "namaAcara", "hariTanggal", "waktu", "tempat", "domain", "penutup"].forEach((id) => {
+      ["namaTamu", "namaAcara", "hariTanggal", "waktu", "domain", "penutup"].forEach((id) => {
         el(id).addEventListener("input", () => {
           generateMessage();
         });
